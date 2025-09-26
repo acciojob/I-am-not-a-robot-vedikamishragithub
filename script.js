@@ -18,35 +18,32 @@ function shuffleArray(array) {
 function shuffleImages() {
   const images = Array.from(container.querySelectorAll('img'));
   const shuffled = shuffleArray(images);
-
   shuffled.forEach(img => container.appendChild(img));
 
   const randomIndex = Math.floor(Math.random() * shuffled.length);
   const randomImage = shuffled[randomIndex];
-
   const clone = randomImage.cloneNode(true);
   clone.src = randomImage.src;
   const img6 = randomImage.cloneNode(true);
-  container.appendChild(img6);
+  container.appendChild(img6); 
 }
 
-shuffleImages();
+ shuffleImages();
 
 function handleImageClick(event) {
   const clicked = event.target;
 
   if (clicked.tagName === 'IMG') {
     clickCount++;
-
     if (clickCount === 1) {
       reset.style.display="block";
       firstClickedSrc = clicked.src;
       clicked.classList.add('selected');
     } else if (clickCount === 2) {
+      verify.style.display="block";
       secondClickedSrc = clicked.src;
       clicked.classList.add('selected');
-      container.removeEventListener('click', handleImageClick);
-      verify.style.display = "block";
+      container.removeEventListener('click', handleImageClick);      
     }
   }
 }
@@ -58,17 +55,20 @@ reset.addEventListener('click', () => {
 });
 
 verify.addEventListener('click', () => {
-  
-
+  // clickCount = 0;
+  // firstClickedSrc = null;
+  // secondClickedSrc = null;
   
   verify.style.display = "none";
   container.addEventListener('click', handleImageClick);
-  if (firstClickedSrc === secondClickedSrc) {
+        if (firstClickedSrc === secondClickedSrc) {
         message.innerText = "You are a human. Congratulations!";
         message.style.display = "block";
-   } else {
+      } else {
         message.innerText = "We can't verify you as a human. You selected the non-identical tiles.";
         message.style.display = "block";
-    }
+      }
 });
+
+
 
