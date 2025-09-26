@@ -1,7 +1,7 @@
 const container = document.getElementById('container');
 const reset = document.getElementById('reset');
 const verify = document.getElementById('verify');
-const message = document.getElementById('message');
+const message = document.getElementById('para');
 
 let clickCount = 0;
 let firstClickedSrc = null;
